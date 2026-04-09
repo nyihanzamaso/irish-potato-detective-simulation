@@ -43,7 +43,7 @@ if img_file:
     batch_t = torch.unsqueeze(img_t, 0)
 
     classes = ['Healthy', 'earlyblt', 'lateblt']
-    model.load_state_dict(torch.load("C:\\irish potato detective\\venv\\model\\potato_1.pth"))
+    model.load_state_dict(torch.load("C:\\irish potato detective\\model\\potato_1.pth"))
     st.write('model loaded successfully')
 
 
