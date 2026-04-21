@@ -6,7 +6,9 @@ import torchvision.transforms as transforms
 
 st.title('irish potato leaf disease detection')
 st.title('Simuating real-time U/P computing edge AI analysis')
-img_file = st.file_uploader("upload an image of a potato leaf")
+img_file = st.file_uploader("upload an image of a potato leaf") 
+if img_file is not None:
+    st.image(img_file, caption='uploaded Image', width='stretch')
 
 import torch.nn as nn
 import torch.nn.functional as F
@@ -50,7 +52,8 @@ if img_file:
     with torch.no_grad():
         output = model(batch_t)
         _, predicted = torch.max(output, 1)
-        st.write(f"predicted class: {classes[predicted]}")
+
+        st.write(f"predicted class: {classes[predicted]}   with confidence: {torch.softmax(output, dim=1)[0][predicted].item():.4f}")
         if classes[predicted] == 'Healthy':
            st.write('the potato leaf is healthy')
         elif classes[predicted] == 'earlyblt':
